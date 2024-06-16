@@ -1,21 +1,36 @@
 # Telephorikos
 
-**TODO: Add description**
+Telephorikos is an Elixir project designed to manage job tasks with detailed attributes including container ID, state, image, resource allocations, and port configurations. The project includes functionalities for creating, managing, and validating job tasks.
+
+## Features
+
+- Define and manage job tasks with various attributes.
+- Validate job tasks for correct port bindings and exposed ports.
+- Built using Elixir with a focus on robustness and maintainability.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `telephorikos` to your list of dependencies in `mix.exs`:
+### Prerequisites
 
-```elixir
-def deps do
-  [
-    {:telephorikos, "~> 0.1.0"}
-  ]
-end
+- Elixir (version 1.16.2 or later)
+- Erlang/OTP (version 26 or later)
+
+### Steps
+
+1. **Clone the repository:**
+
+   ```sh
+   git clone https://github.com/tim-br/telephorikos.git
+   cd telephorikos
+
+2. Install dependencies:
+
+```sh
+mix deps.get
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/telephorikos>.
+3. Run tests to ensure everything is set up correctly:
 
+```sh
+mix test
+```
