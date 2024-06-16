@@ -2,12 +2,6 @@
 
 Telephorikos is an Elixir project designed to manage job tasks with detailed attributes including container ID, state, image, resource allocations, and port configurations. The project includes functionalities for creating, managing, and validating job tasks.
 
-## Features
-
-- Define and manage job tasks with various attributes.
-- Validate job tasks for correct port bindings and exposed ports.
-- Built using Elixir with a focus on robustness and maintainability.
-
 ## Installation
 
 ### Prerequisites
