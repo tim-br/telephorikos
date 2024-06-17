@@ -1,4 +1,4 @@
-defmodule TaskEvent do
+defmodule Node do
   defstruct [
     :name,
     :ip,
