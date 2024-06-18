@@ -28,6 +28,14 @@ mix deps.get
 
 3. Run tests to ensure everything is set up correctly:
 
+Ensure `hello-world` image is available locally.
+
+```sh
+docker pull hello-world
+```
+
+Then run tests.
+
 ```sh
 mix test
 ```
