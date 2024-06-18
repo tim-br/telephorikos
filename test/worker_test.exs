@@ -11,14 +11,16 @@ defmodule WorkerTest do
 
     task_item = %TaskItem{
       id: "task-id",
-      name: "task-1",
+      name: "task_5",
       state: :scheduled,
       image: "hello-world"
     }
 
     new_queue = :queue.in(task_item, worker.task_queue)
     updated_worker = %{worker | task_queue: new_queue}
-    Worker.run_task(updated_worker)
-    assert 3 == 3
+    updated_worker = Worker.run_task(updated_worker)
+    ## temp method to simulate task running time
+    :timer.sleep(1000)
+    DockerClient.delete_container(updated_worker.task_store)
   end
 end

@@ -7,21 +7,28 @@ defmodule DockerClient do
     |> handle_response()
   end
 
-  def create_container(image_name) do
+  def create_container(image_name, container_name) do
     body =
       Poison.encode!(%{
         "Image" => image_name
       })
 
-    docker_url("/containers/create")
+    docker_url("/containers/create?name=#{container_name}")
     |> HTTPoison.post(body, [{"Content-Type", "application/json"}],
       hackney: [unix_socket: @docker_sock_path]
     )
     |> handle_response()
-    |> case do
-      {:ok, %{"Id" => id}} -> start_container(id)
-      error -> error
-    end
+
+    ## |> case do
+    ##  {:ok, %{"Id" => id}} -> start_container(id)
+    ##  error -> error
+    ## end
+  end
+
+  def delete_container(container_id) do
+    docker_url("/containers/#{container_id}")
+    |> HTTPoison.delete([], hackney: [unix_socket: @docker_sock_path])
+    |> handle_start_response()
   end
 
   def start_container(container_id) do
@@ -37,7 +44,8 @@ defmodule DockerClient do
     "http+unix://#{URI.encode_www_form(@docker_sock_path)}#{endpoint}"
   end
 
-  defp handle_response({:ok, %HTTPoison.Response{status_code: _status_code, body: body}}) do
+  defp handle_response({:ok, %HTTPoison.Response{status_code: status_code, body: body}}) do
+    IO.puts(" status code #{status_code}")
     {:ok, Poison.decode!(body)}
   end
 

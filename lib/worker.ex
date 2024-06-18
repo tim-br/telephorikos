@@ -19,10 +19,11 @@ defmodule Worker do
 
         worker
 
-      {{:value, task}, _new_queue} ->
+      {{:value, task}, new_queue} ->
         IO.puts("Starting task: #{inspect(task)}")
+        {:ok, %{"Id" => id}} = DockerClient.create_container(task.image, task.name)
         # Update the task queue in the worker struct
-        ## worker = %{worker | task_queue: new_queue}
+        worker = %{worker | task_queue: new_queue, task_store: id}
         worker
     end
   end
