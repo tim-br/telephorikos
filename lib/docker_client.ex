@@ -37,7 +37,7 @@ defmodule DockerClient do
     "http+unix://#{URI.encode_www_form(@docker_sock_path)}#{endpoint}"
   end
 
-  defp handle_response({:ok, %HTTPoison.Response{status_code: status_code, body: body}}) do
+  defp handle_response({:ok, %HTTPoison.Response{status_code: _status_code, body: body}}) do
     {:ok, Poison.decode!(body)}
   end
 

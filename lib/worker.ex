@@ -10,8 +10,21 @@ defmodule Worker do
     IO.puts("collecting stats...")
   end
 
-  def run_task do
+  def run_task(worker) do
     IO.puts("running task...")
+
+    case :queue.out(worker.task_queue) do
+      {:empty, _} ->
+        IO.puts("No tasks in queue")
+
+        worker
+
+      {{:value, task}, _new_queue} ->
+        IO.puts("Starting task: #{inspect(task)}")
+        # Update the task queue in the worker struct
+        ## worker = %{worker | task_queue: new_queue}
+        worker
+    end
   end
 
   def start_task do
@@ -21,5 +34,4 @@ defmodule Worker do
   def stop_task do
     IO.puts("stopping task...")
   end
-
 end
