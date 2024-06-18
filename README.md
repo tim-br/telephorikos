@@ -11,7 +11,7 @@ Telephorikos is an Elixir project designed to manage job tasks with detailed att
 - Docker
 
 Ensure that the docker api is running and available at 
-`/var/run/docker.sock`
+`/var/run/docker.sock`. IMPORTANT: Tests will not pass if this file is not available.
 ### Steps
 
 1. **Clone the repository:**
